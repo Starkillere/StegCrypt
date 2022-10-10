@@ -5,20 +5,29 @@ function afficherPassword() {
     } 
     else { 
         input.type = "password"; 
-    } 
+    }  
 };
 
-function loadFile(event, image) {
-    if (image === 1){
-        var output = document.getElementById('output1');
+function loadFile(event, image, id="") {
+    var fileName = document.getElementById(id).value;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+        if (image === 1){
+            var output = document.getElementById('output1');
 
+        }
+        else if (image === 2) {
+            var output = document.getElementById('output2');
+        }
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+          URL.revokeObjectURL(output.src)
+        }
     }
-    else if (image === 2) {
-        var output = document.getElementById('output2');
-    }
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src)
+    else{
+        alert("Attention vous avez charger un fichier autre qu'une image de type png ; jpg ;  jpeg");
+        file.value = "";
     }
 };
 
@@ -104,3 +113,16 @@ function goingMode(nb)
         champs.value = "annuler"
     }
 }
+
+function validateFileType(id){
+    var file = document.getElementById(id);
+    var fileName = document.getElementById(id).value;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+        //TO DO
+    }else{
+        alert("Attention vous avez charger un fichier autre qu'une image de type png ; jpg ;  jpeg");
+        file.value = "";
+    }   
+};
