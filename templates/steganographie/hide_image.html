@@ -12,7 +12,7 @@
                     <div class="content">
                         <div class="drop-zone">
                             <span class="drop-zone__prompt">Glissez ou cliquez pour charger votre image</span>
-                            <input enctype="multipart/form-data" type="file" name="image1" class="drop-zone__input" required>
+                            <input id="fileName" onchange="validateFileType(this.id)" enctype="multipart/form-data" type="file" name="image1" class="drop-zone__input" accept="image/*" required>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="content">
                     <div class="drop-zone">
                         <span class="drop-zone__prompt">Glissez ou cliquez pour charger votre image a cacher</span>
-                        <input enctype="multipart/form-data" type="file" name="image2" class="drop-zone__input" required>
+                        <input id="fileName2" onchange="validateFileType(this.id)" enctype="multipart/form-data" type="file" name="image2" class="drop-zone__input" accept="image/*" required>
                     </div>
                 </div>
                 <br>
