@@ -1,5 +1,6 @@
 #-*- conding:utf-8 -*-
 from CodageMawa import CodageMawa
+from PIL import Image
 from user_manager import traitement_de_donnees
 from creatTable import database
 import sqlite3
@@ -41,4 +42,12 @@ def delt_user_data(user_id:int):
             requete = f"DELETE FROM gestionnaire WHERE {database['Table'][1]['keys'][0]} = ?"
             cursor.execute(requete, [(user_id)])
             connection.commit()
+    return True
+
+def is_image(filename:str):
+    try:
+        image = Image.open(filename)
+        image.verify()
+    except:
+        return False
     return True
