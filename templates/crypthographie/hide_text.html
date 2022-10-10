@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block navlinks %}
+<li><a href="/Crypthographie">Cryptographie</a></li>
+{% endblock %}
+{% block changer %}
+<link rel="stylesheet" type="text/css" href="/static/css/crypthographie/main.css">
+<section>
+    <form action="/Crypthographie/Chiffrer" method="post">
+        <div class="destination">
+
+            <div class="content">
+                <div class="conteneur">
+                    <div class="crypt">
+                        <label>Crtpto Système</label>
+                        <select name="système" id="système">
+                            <option value="CodageMawa">CodageMawa</option>
+                            <option value="RSA">RSA</option>
+                        </select>
+                    </div>
+                    <div class="image">
+                        <img src="/static/images/chiffrer/CodageMawa.jpg" alt="" style="width: 50%;clip-path: ellipse(33% 50%);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="content" style="margin-right: 15%;">
+                <div class="conteneur">
+                    <div class="zone text">
+                        <textarea name="textarea" id="textarea" cols="30" rows="10">{{text}}</textarea>
+                    </div>
+                    <div class="buttton">
+                        <button class="button-64" role="button"><span class="text">Chiffrer</span></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</section>
+{% endblock %}

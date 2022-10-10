@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block navlinks %}
+<li><a href="/Crypthographie">Cryptographie</a></li>
+{% endblock %}
+{% block changer %}
+<link rel="stylesheet" type="text/css" href="/static/css/crypthographie/portal_crypthographie.css">
+<section>
+    <div class="images">
+        <img src="/static/images/chiffrer/cadena.webp" alt="cadena">
+    </div>
+    <p>
+        <a href="/Crypthographie/Chiffrer" class="rigth"><button>Chiffrer</button></a>       
+        <a href="/Crypthographie/Dechiffrer" class="left"><button>Dechiffrer</button></a>
+        </p>
+</section>
+{% endblock %}
