@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block changer %}
+    <link rel="stylesheet" type="text/css" href="/static/css/tableau_de_bord.css">
+    <div class="form">
+        <form action="/Tableau-de-bord" method="post">
+            <input type="hidden" id="input" name="input">
+            <input type="hidden" id="data" value="{{data}}">
+            <div class="platformes">
+                {% for platform in add %}
+                    <button id="{{platform}}" type="submit" onclick="send(this.id)">
+                        <div class="platforme">
+                            <div class="platforme_name">
+                                <h1>{{platform}}</h1>
+                            </div>
+                            <div class="text">
+                                <p>Restrouvez vos mots de passe {{platform}}</p>
+                            </div>
+                            <div class="platform_logo">
+                                <img src="/static/images/logo/{{platform}}.png" alt="logo {{platform}}">
+                            </div>
+                        </div>
+                    </button>
+                {% endfor %}
+                <a href="/Add_password"><button type="button" style="background-color:#40424400; box-shadow:none; border: none;">
+                    <img src="/static/images/add.png" alt="" width="200" style="background-color: #40424400;">
+                </button></a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

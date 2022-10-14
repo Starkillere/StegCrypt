@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block navlinks %}
+<li><a href="/Steganographie">Stéganographie</a></li>
+<li><a href="/Steganographie/Text">Retour</a></li>
+{% endblock %}
+{% block changer %}
+    <link rel="stylesheet" type="text/css" href="/static/css/steganographie/portal_text.css">
+    <form action="/Steganographie/Text/Cacher" method="post" enctype="multipart/form-data">
+        <div class="zone">
+            <div class="elmt">
+                <div class="previwie">
+                    <div class="content">
+                        <div class="drop-zone">
+                            <span class="drop-zone__prompt">Glissez ou cliquez pour charger votre image</span>
+                            <input id="fileName" onchange="validateFileType(this.id)" enctype="multipart/form-data" type="file" name="image1" class="drop-zone__input" accept="image/*" required>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <div class="elmt">
+                <div class="textzone">
+                    <div class="zone_text">
+                        <textarea name="textarea" id="textarea" cols="30" rows="10" placeholder="Saisir le texte a caché dans l'image" required></textarea>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="buttton">          
+                    <button class="button-64" role="button"><span class="text">Cacher</span></button>  
+                </div>
+                <br>
+                <br>
+                <h1 class="error">{{error}}</h1>
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,93 @@
+.lieu_de_culte
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px 10em;
+    padding-top: 2%;
+}
+
+.lieu_de_culte .content {
+    height: 200px; width: 200px;
+    background-color: #1f212c;
+    padding: 12px;
+    position:relative;
+    display: inline-block;
+    margin: 28px 0;
+
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+  }
+
+  .lieu_de_culte .content:hover
+  {
+    -webkit-transform: scale(1.15);
+	transform: scale(1.15);
+    border: 1px solid #45f3ff;
+  }
+
+  .lieu_de_culte .content:after {
+    content: "";
+    position:absolute;
+    z-index: -1;
+    border-right: 28px solid transparent;
+    border-left: 28px solid transparent;
+    border-top: 28px solid #1f212c;
+    left:-28px;
+    right:-28px;
+    bottom:-28px;
+    margin-left: 28px;
+    margin-right: 28px;
+  }
+
+  .lieu_de_culte .content:before {
+    content: "";
+    position:absolute;
+    z-index: -1;
+    border-right: 28px solid transparent;
+    border-left: 28px solid transparent;
+    border-bottom: 28px solid #1f212c;
+    top:-28px;
+    left:-28px;
+    right:-28px;
+    margin-left: 28px;
+    margin-right: 28px;
+  }
+
+  .lieu_de_culte .content .title
+  {
+    color: #e3e3e4;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 5%;
+    border-bottom:3px solid antiquewhite;
+  }
+
+  .lieu_de_culte .content .description
+  {
+    color: #3d3d3d;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 2%;
+  }
+
+  .lieu_de_culte .content .image img
+  {
+    width: 195px;
+    height: 80px;
+  }
+
+  @media screen and (max-width: 900px)
+  {
+    .lieu_de_culte
+    {
+        display: block;
+    }
+
+    .lieu_de_culte .content
+    {
+        margin-bottom: 30%;
+    }
+
+  }

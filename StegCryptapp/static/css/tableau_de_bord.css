@@ -1,0 +1,82 @@
+
+.platformes
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px 5em;
+    padding-top: 2%;
+}
+
+.platformes button
+{
+    background-color:#1f212c;
+    width: 300px;
+    height: 200px;
+    color: aliceblue;
+    padding: 5%;
+    border-radius: 32px 54px;
+    box-shadow: 10px 5px 5px rgb(75, 74, 74);
+    cursor: pointer;
+}
+
+.platformes button:hover
+{
+    border: 3px solid #45f3ff;
+}
+
+.platformes button .platforme_name
+{
+    padding: 2%;
+    font-size: 20px;
+    font-weight: 400;
+    border-bottom: 3px solid antiquewhite;
+}
+
+.platformes button .text
+{
+    padding: 2%;
+    font-style: italic;
+    color: #6d6d6d;
+}
+
+.platformes button .platform_logo img
+{
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width: 900px)
+{
+    .platformes
+    {
+        display: block;
+    }
+
+    .platformes button
+    {
+        width:250px;
+        height: 180px;
+        color: aliceblue;
+        margin-top: 10%;
+        box-shadow: none;
+    }
+
+    .platformes button .platforme_name
+    {
+        
+        font-size: 16px;
+    }
+
+    .platformes button .platform_logo img
+    {
+        width: 50px;
+        height: 50px;
+    }
+
+    .add
+    {
+        width:250px;
+        height: 180px;
+        padding-bottom: 5%;
+    }
+}
