@@ -257,7 +257,7 @@ def stegtextcacher():
                     try:
                         file_name = my_steg.hideTextInImage(text, file_path, app.config["SENDS_FOLDER"])
                         os.remove(file_path)
-                        # find solution for delt
+                        # find solution for delete
                         print(file_name)
                         return send_file(os.path.abspath(file_name), as_attachment=True)
                     except:
@@ -333,7 +333,7 @@ def stegimagecacher():
                         file_name = my_steg.encodeImageByImage(file_path2, file_path, app.config["SENDS_FOLDER"])
                         os.remove(file_path)
                         os.remove(file_path2)
-                        # find solution for delt
+                        # find solution for delete
                         return send_file(os.path.abspath(file_name), as_attachment=True)
                     except:
                         pass
