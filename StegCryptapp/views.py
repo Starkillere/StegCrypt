@@ -61,6 +61,9 @@ class PasswordManager(db.Model):
         self.round = round
         self.vecteur_initial = vecteur_initial
 
+def t_init_db():
+    db.drop_all()
+    db.create_all()
 
 #-/*/ ID-position: Pages Principaux -/*/
 

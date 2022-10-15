@@ -1,0 +1,2 @@
+web: gunicorn StegCryptapp:app
+init: FLASK_APP=run.py flask t_init_db

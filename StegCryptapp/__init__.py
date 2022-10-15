@@ -1,5 +1,8 @@
-from .views import app, db
+from .views import app, db, t_init_db
 
-with app.app_context():
-    db.create_all()
 
+db.init_app(app)
+
+@app.cli.command()
+def init_db():
+    t_init_db()
