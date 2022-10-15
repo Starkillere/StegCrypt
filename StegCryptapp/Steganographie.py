@@ -21,8 +21,7 @@ class Steganographie:
             Tablehote = np.array(hote)
             return (Tableimage, Tablehote)
             
-    def encodeImageByImage(self, image:str, hote:str, folder="/"):
-        imageName = image.split("/")[-1]
+    def encodeImageByImage(self, image:str, hote:str):
         image = Image.open(image)
         hote = Image.open(hote)
         Tableimage,TableHote = self.__resize_image(image, hote)
@@ -38,11 +37,9 @@ class Steganographie:
                     new_value_bin = valeur_rgb_hote_bin[:4] + valeur_rgb_image_bin[:4]
                     Tableimage[i][j][p] = int(new_value_bin,2)
         cacher_image = Image.fromarray(Tableimage)
-        cacher_image.save(folder+"/"+imageName)
-        return folder+"/"+imageName
+        return cacher_image
 
-    def decodeImageByImage(self, image:str, folder="/"):
-        imageName = image.split("/")[-1]
+    def decodeImageByImage(self, image:str):
         image = Image.open(image)
         Tableimage = np.array(image)
         for i in range(len(Tableimage)):
@@ -54,10 +51,9 @@ class Steganographie:
                     new_value_bin = valeur_rgb_image_bin[3:] + '0000'
                     Tableimage[i][j][p] = int(new_value_bin,2)
         cacher_image = Image.fromarray(Tableimage)
-        cacher_image.save(folder+"/"+imageName)
-        return folder+"/"+imageName
+        return cacher_image
 
-    def hideTextInImage(self, text:str, image:str, folder="/"):
+    def hideTextInImage(self, text:str, image:str):
         im = Image.open(image)
         x , y = im.size
         r , g , b = im.split()
@@ -78,9 +74,7 @@ class Steganographie:
         nr.putdata(r)
         
         imgnew = Image.merge('RGB',(nr,g,b))
-        new_name_img = folder + "/" + image.split("/")[-1]
-        imgnew.save(new_name_img)
-        return new_name_img
+        return imgnew
     
     def findText(self, image:str):
         im = Image.open(image)
