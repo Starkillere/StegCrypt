@@ -55,7 +55,10 @@ def is_image(filename:str):
 
 def this_type_to_png_image(filename:str):
     img = Image.open(filename)
-    new_filename = ('.'.join(filename.split('.')[:-1]))+".png"
-    img.save(new_filename)
-    os.remove(filename)
-    return new_filename
+    if filename.split(".")[-1] != "png":
+        new_filename = ('.'.join(filename.split('.')[:-1]))+".png"
+        img.save(new_filename)
+        os.remove(filename)
+        return new_filename
+    else:
+        return filename
