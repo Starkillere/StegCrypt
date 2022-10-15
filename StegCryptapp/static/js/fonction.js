@@ -1,3 +1,4 @@
+/* revoir */
 function afficherPassword() { 
     var input = document.getElementById("password");
     if (input.type === "password") { 
