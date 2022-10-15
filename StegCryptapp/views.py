@@ -4,9 +4,9 @@ from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from datetime import datetime
+from io import BytesIO
 import os
 
-SENDS_FOLDER = "StegCryptapp/sends_files"
 UPLOAD_FOLDER = "StegCryptapp/uploads_files"
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg'}
 
@@ -15,7 +15,6 @@ app.config.from_object("config")
 app.secret_key = app.config["SECRET_KEY"]
 app.permanent_session_lifetime = timedelta(days=5)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SENDS_FOLDER'] = SENDS_FOLDER
 app.config["ALLOWED_EXTENSIONS"] = ALLOWED_EXTENSIONS
 
 db = SQLAlchemy(app)
@@ -255,11 +254,11 @@ def stegtextcacher():
                 if data_manager.is_image(file_path):
                     file_path = data_manager.this_type_to_png_image(file_path)
                     try:
-                        file_name = my_steg.hideTextInImage(text, file_path, app.config["SENDS_FOLDER"])
+                        img_io = BytesIO()
+                        my_steg.hideTextInImage(text, file_path).save(img_io,'PNG')
+                        img_io.seek(0)
                         os.remove(file_path)
-                        # find solution for delete
-                        print(file_name)
-                        return send_file(os.path.abspath(file_name), as_attachment=True)
+                        return send_file(img_io, as_attachment=True, download_name=filename)
                     except:
                         pass
             if os.path.exists(file_path):
@@ -330,11 +329,12 @@ def stegimagecacher():
                     file_path = data_manager.this_type_to_png_image(file_path)
                     file_path2 = data_manager.this_type_to_png_image(file_path2)
                     try:
-                        file_name = my_steg.encodeImageByImage(file_path2, file_path, app.config["SENDS_FOLDER"])
+                        img_io = BytesIO()
+                        my_steg.encodeImageByImage(file_path2, file_path).save(img_io,'PNG')
+                        img_io.seek(0)
                         os.remove(file_path)
                         os.remove(file_path2)
-                        # find solution for delete
-                        return send_file(os.path.abspath(file_name), as_attachment=True)
+                        return send_file(img_io, as_attachment=True, download_name=filename)
                     except:
                         pass
             if os.path.exists(file_path):
@@ -366,10 +366,11 @@ def stegimageretrouver():
                 file.save(file_path)
                 if data_manager.is_image(file_path):
                     try:
-                       file_name = my_steg.decodeImageByImage(file_path, app.config["SENDS_FOLDER"])
-                       os.remove(file_path)
-                       # find solution for delete
-                       return send_file(os.path.abspath(file_name), as_attachment=True)
+                        img_io = BytesIO()
+                        my_steg.decodeImageByImage(file_path).save(img_io,'PNG')
+                        img_io.seek(0)
+                        os.remove(file_path)
+                        return send_file(img_io, as_attachment=True, download_name=filename)
                     except:
                         pass
             if os.path.exists(file_path):
