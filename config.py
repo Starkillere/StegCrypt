@@ -7,3 +7,5 @@ if os.environ.get('DATABASE_URL') is None:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
 else:
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+        SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
