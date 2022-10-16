@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, request, send_file, redirect, url_for, session, flash
 from . import PasswordGenerator, Steganographie,  rsa, user_manager, data_processing, data_manager
 from werkzeug.utils import secure_filename
@@ -420,7 +421,20 @@ def page_not_found(error):
     return render_template('errors.html', connected=False, erros="404", message="Service indisponible"), 404
 
 @app.errorhandler(500)
-def page_not_found(error):
+def page_on(error):
     if "CONNECTED" in session:
         return render_template('errors.html', connected=session['CONNECTED'], Username=session['USER_NAME'], erros="404", message="Service indisponible"), 500
     return render_template('errors.html', connected=False, erros="500", message="Service en réparation"), 500
+
+
+# Administrateur
+
+@app.route("/show-user", methods=["GET"])
+def show_user():
+    if "CONNECTED" in session and session['USER_NAME'] == "Administrateur":
+        users = User.query.order(User.date_added)
+        users_template = ""
+        for user in users:
+            users_template += f"<br>{user.name}<br>"
+        return users_template
+    return redirect(url_for("acceuil"))
