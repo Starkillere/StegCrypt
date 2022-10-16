@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, render_template, request, send_file, redirect, url_for, session, flash
 from . import PasswordGenerator, Steganographie,  rsa, user_manager, data_processing, data_manager
 from werkzeug.utils import secure_filename
@@ -432,9 +431,9 @@ def page_on(error):
 @app.route("/show-user", methods=["GET"])
 def show_user():
     if "CONNECTED" in session and session['USER_NAME'] == "Administrateur":
-        users = User.query.order(User.date_added)
+        users = User.query.order_by(User.date_added)
         users_template = ""
         for user in users:
-            users_template += f"<br>{user.name}<br>"
+            users_template += f"<br>{user.nom}<br>"
         return users_template
     return redirect(url_for("acceuil"))
