@@ -416,5 +416,11 @@ def dechiffreur():
 @app.errorhandler(404)
 def page_not_found(error):
     if "CONNECTED" in session:
-        return render_template('404.html', connected=session['CONNECTED'], Username=session['USER_NAME']), 404
-    return render_template('404.html', connected=False), 404
+        return render_template('errors.html', connected=session['CONNECTED'], Username=session['USER_NAME'], erros="404", message="Service indisponible"), 404
+    return render_template('errors.html', connected=False, erros="404", message="Service indisponible"), 404
+
+@app.errorhandler(500)
+def page_not_found(error):
+    if "CONNECTED" in session:
+        return render_template('errors.html', connected=session['CONNECTED'], Username=session['USER_NAME'], erros="404", message="Service indisponible"), 500
+    return render_template('errors.html', connected=False, erros="500", message="Service en réparation"), 500
