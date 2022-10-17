@@ -430,9 +430,7 @@ def page_on(error):
 
 @app.route("/show-user", methods=["GET"])
 def show_user():
-    if "CONNECTED" in session and session['USER_NAME'] == "Administrateur1":
-        user_manager.delt_user(4, User, db)
-        data_manager.delt_user_data(4, PasswordManager, db)
+    if "CONNECTED" in session and session['USER_NAME'] == "Administrateur":
         users = User.query.order_by(User.date_added)
         users_template = "<br>   id   |   nom   |   mail   <br>"
         for user in users:
