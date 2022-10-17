@@ -436,6 +436,6 @@ def show_user():
         users = User.query.order_by(User.date_added)
         users_template = ""
         for user in users:
-            users_template += f"<br>{user.nom}<br>"
+            users_template += f"<br>{user.id}|{user.nom}|{user.mail}<br>"
         return users_template
     return redirect(url_for("acceuil"))
