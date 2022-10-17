@@ -431,11 +431,11 @@ def page_on(error):
 @app.route("/show-user", methods=["GET"])
 def show_user():
     if "CONNECTED" in session and session['USER_NAME'] == "Administrateur1":
-        #user_manager.delt_user(2, User, db)
-        #data_manager.delt_user_data(2, PasswordManager, db)
+        user_manager.delt_user(4, User, db)
+        data_manager.delt_user_data(4, PasswordManager, db)
         users = User.query.order_by(User.date_added)
-        users_template = ""
+        users_template = "<br>   id   |   nom   |   mail   <br>"
         for user in users:
-            users_template += f"<br>{user.id}|{user.nom}|{user.mail}<br>"
+            users_template += f"<br>   {user.id}   |   {user.nom}   |{user.mail}   <br>"
         return users_template
     return redirect(url_for("acceuil"))
