@@ -47,11 +47,8 @@ def allowed_file(filename, allwed_extensions):
 def is_image(filename:str):
     try:
         image = Image.open(filename)
-        print("la1")
         image.verify()
-        print("la2")
     except:
-        print("la")
         return False
     return True
 
