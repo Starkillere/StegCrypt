@@ -331,15 +331,15 @@ def stegimagecacher():
                 if data_manager.is_image(file_path) and data_manager.is_image(file_path2):
                     file_path = data_manager.this_type_to_png_image(file_path)
                     file_path2 = data_manager.this_type_to_png_image(file_path2)
-                    try:
-                        img_io = BytesIO()
-                        my_steg.encodeImageByImage(file_path2, file_path).save(img_io,'PNG')
-                        img_io.seek(0)
-                        os.remove(file_path)
-                        os.remove(file_path2)
-                        return send_file(img_io, as_attachment=True, download_name=filename)
-                    except:
-                        pass
+                    #try:
+                    img_io = BytesIO()
+                    my_steg.encodeImageByImage(file_path2, file_path).save(img_io,'PNG')
+                    img_io.seek(0)
+                    os.remove(file_path)
+                    os.remove(file_path2)
+                    return send_file(img_io, as_attachment=True, download_name=filename)
+                    #except:
+                        #pass
             if os.path.exists(file_path):
                 os.remove(file_path)
 
