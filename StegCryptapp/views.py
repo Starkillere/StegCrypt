@@ -242,7 +242,6 @@ def stegtextcacher():
         if request.method == "POST":
             my_steg = Steganographie.Steganographie()
             text = request.form['textarea']
-            print(text)
             if 'image1' not in request.files:
                 flash('Aucun fichier partager !', 'error')
                 return redirect(request.url)
@@ -290,7 +289,6 @@ def stegtextfind():
                 if data_manager.is_image(file_path):
                     try:
                         text = my_steg.findText(os.path.abspath(file_path))
-                        print(text)
                         os.remove(file_path)
                         return render_template('/steganographie/find_text.html', text=text, connected=session['CONNECTED'], Username=session['USER_NAME'])
                     except:
@@ -331,21 +329,15 @@ def stegimagecacher():
                 if data_manager.is_image(file_path) and data_manager.is_image(file_path2):
                     file_path = data_manager.this_type_to_png_image(file_path)
                     file_path2 = data_manager.this_type_to_png_image(file_path2)
-                    #try:
-                    img_io = BytesIO()
-                    print("ici1")
-                    my_steg.encodeImageByImage(file_path2, file_path).save(img_io,'PNG')
-                    print("ici2")
-                    img_io.seek(0)
-                    print("ici3")
-                    os.remove(file_path)
-                    print("ici4")
-                    os.remove(file_path2)
-                    print("ici5")
-                    return send_file(img_io, as_attachment=True, download_name=filename)
-                    #except:
-                        #pass
-            print("ici")
+                    try:
+                        img_io = BytesIO()
+                        my_steg.encodeImageByImage(file_path2, file_path).save(img_io,'PNG')
+                        img_io.seek(0)
+                        os.remove(file_path)
+                        os.remove(file_path2)
+                        return send_file(img_io, as_attachment=True, download_name=filename)
+                    except:
+                        pass
             if os.path.exists(file_path):
                 os.remove(file_path)
 
