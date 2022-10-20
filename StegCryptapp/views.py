@@ -333,13 +333,19 @@ def stegimagecacher():
                     file_path2 = data_manager.this_type_to_png_image(file_path2)
                     #try:
                     img_io = BytesIO()
+                    print("ici1")
                     my_steg.encodeImageByImage(file_path2, file_path).save(img_io,'PNG')
+                    print("ici2")
                     img_io.seek(0)
+                    print("ici3")
                     os.remove(file_path)
+                    print("ici4")
                     os.remove(file_path2)
+                    print("ici5")
                     return send_file(img_io, as_attachment=True, download_name=filename)
                     #except:
                         #pass
+            print("ici")
             if os.path.exists(file_path):
                 os.remove(file_path)
 
