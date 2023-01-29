@@ -1,3 +1,11 @@
+"""
+    Initialisation: 29/04/2022
+    Langage: python 3.9.2 (pardefaut)
+    Objet: Sysytéme cryptographique
+    Base: Model mathématique
+    rep: inconu
+    par :Ayouba Anrezki
+"""
 __all__ = [__loader__]
 
 from random import SystemRandom 
@@ -64,7 +72,7 @@ class CodageMawa:
         masterkey =  self.__creat_bloc(masterkey)
         masterkey:list = [[ord(j) for j in i] for i in masterkey]
         for i in range(len(bloc)):
-            nb = bloc[i] + 7
+            nb = (121*bloc[i]+901)%self.max
             bloc[i] = bin(nb)[2:]
             if len(bloc[i]) > max_len:
                 max_len = len(bloc[i])
@@ -127,7 +135,7 @@ class CodageMawa:
                 bloc[j] = chaine
 
         chiffre = [int(i,2) for i in bloc]
-        clair = [p-7 for p in chiffre]
+        clair = [(457*p+30611)%self.max for p in chiffre]
         return clair
     
     def mawaEncode(self, text:str, masterKey:str) -> tuple:
